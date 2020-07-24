@@ -15,7 +15,7 @@ data <- read.csv('activity.csv')
 ```{r}
 daily_steps <- tapply(data$steps, 
                       data$date, 
-                      function(x){mean(x, na.rm = TRUE)})
+                      function(x){sum(x, na.rm = TRUE)})
 head(daily_steps)
 ```
 ### Histogram of the total number of steps taken each day
@@ -70,7 +70,7 @@ filled_data <- data %>%
 ```{r}
 daily_steps_filled <- tapply(filled_data$steps,
                              filled_data$date,
-                             function(x){mean(x, na.rm = TRUE)})
+                             function(x){sum(x)})
 hist(daily_steps_filled, main = 'Steps Per Day Histogram', 
      xlab = '# steps per day')
 ```

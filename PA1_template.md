@@ -17,13 +17,13 @@ data <- read.csv('activity.csv')
 ```r
 daily_steps <- tapply(data$steps, 
                       data$date, 
-                      function(x){mean(x, na.rm = TRUE)})
+                      function(x){sum(x, na.rm = TRUE)})
 head(daily_steps)
 ```
 
 ```
 ## 2012-10-01 2012-10-02 2012-10-03 2012-10-04 2012-10-05 2012-10-06 
-##        NaN    0.43750   39.41667   42.06944   46.15972   53.54167
+##          0        126      11352      12116      13294      15420
 ```
 ### Histogram of the total number of steps taken each day
 
@@ -40,7 +40,7 @@ mean(daily_steps, na.rm = TRUE)
 ```
 
 ```
-## [1] 37.3826
+## [1] 9354.23
 ```
 ### Median of steps per day
 
@@ -49,7 +49,7 @@ median(daily_steps, na.rm = TRUE)
 ```
 
 ```
-## [1] 37.37847
+## [1] 10395
 ```
 ## What is the average daily activity pattern?
 
@@ -147,7 +147,7 @@ filled_data <- data %>%
 ```r
 daily_steps_filled <- tapply(filled_data$steps,
                              filled_data$date,
-                             function(x){mean(x, na.rm = TRUE)})
+                             function(x){sum(x)})
 hist(daily_steps_filled, main = 'Steps Per Day Histogram', 
      xlab = '# steps per day')
 ```
@@ -161,7 +161,7 @@ mean(daily_steps_filled)
 ```
 
 ```
-## [1] 37.3826
+## [1] 10766.19
 ```
 
 ### Median of steps per day (filled NAs)
@@ -171,7 +171,7 @@ median(daily_steps_filled)
 ```
 
 ```
-## [1] 37.3826
+## [1] 10766.19
 ```
 ### Do these values differ from the estimates from the first part of the assignment?
 
@@ -185,7 +185,7 @@ mean(daily_steps) - mean(daily_steps_filled)
 ```
 
 ```
-## [1] NaN
+## [1] -1411.959
 ```
 #### Median - Median(filled NAs)
 
@@ -194,7 +194,7 @@ median(daily_steps) - median(daily_steps_filled)
 ```
 
 ```
-## [1] NA
+## [1] -371.1887
 ```
 ## Are there differences in activity patterns between weekdays and weekends?
 
